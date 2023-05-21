@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kursovayaModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="kursovayaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Role" EntityType="kursovayaModel1.Role" />
+    <EntitySet Name="Specialnosti" EntityType="kursovayaModel1.Specialnosti" />
+    <EntitySet Name="sysdiagrams" EntityType="kursovayaModel1.sysdiagrams" />
+    <EntitySet Name="Tip_uslugi" EntityType="kursovayaModel1.Tip_uslugi" />
+    <EntitySet Name="User" EntityType="kursovayaModel1.User" />
+    <EntitySet Name="Uslugi" EntityType="kursovayaModel1.Uslugi" />
+    <EntitySet Name="Zapisi" EntityType="kursovayaModel1.Zapisi" />
+    <AssociationSet Name="FK_User_Role" Association="kursovayaModel1.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Specialnosti1" Association="kursovayaModel1.FK_User_Specialnosti1">
+      <End Role="Specialnosti" EntitySet="Specialnosti" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugi_Specialnosti" Association="kursovayaModel1.FK_Uslugi_Specialnosti">
+      <End Role="Specialnosti" EntitySet="Specialnosti" />
+      <End Role="Uslugi" EntitySet="Uslugi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugi_Tip_uslugi1" Association="kursovayaModel1.FK_Uslugi_Tip_uslugi1">
+      <End Role="Tip_uslugi" EntitySet="Tip_uslugi" />
+      <End Role="Uslugi" EntitySet="Uslugi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_User1" Association="kursovayaModel1.FK_Zapisi_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_User2" Association="kursovayaModel1.FK_Zapisi_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_Uslugi" Association="kursovayaModel1.FK_Zapisi_Uslugi">
+      <End Role="Uslugi" EntitySet="Uslugi" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="kursovayaModel1.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Specialnosti">
+    <Key>
+      <PropertyRef Name="ID_Specialnosti" />
+    </Key>
+    <Property Name="ID_Specialnosti" Type="Int32" Nullable="false" />
+    <Property Name="Specialnost" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User" Relationship="kursovayaModel1.FK_User_Specialnosti1" FromRole="Specialnosti" ToRole="User" />
+    <NavigationProperty Name="Uslugi" Relationship="kursovayaModel1.FK_Uslugi_Specialnosti" FromRole="Specialnosti" ToRole="Uslugi" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tip_uslugi">
+    <Key>
+      <PropertyRef Name="ID_Tipa_Uslugi" />
+    </Key>
+    <Property Name="ID_Tipa_Uslugi" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_Tipa_Uslugi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Uslugi" Relationship="kursovayaModel1.FK_Uslugi_Tip_uslugi1" FromRole="Tip_uslugi" ToRole="Uslugi" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_specialnosti" Type="Int32" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Kabinet" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="kursovayaModel1.FK_User_Role" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Specialnosti" Relationship="kursovayaModel1.FK_User_Specialnosti1" FromRole="User" ToRole="Specialnosti" />
+    <NavigationProperty Name="Zapisi" Relationship="kursovayaModel1.FK_Zapisi_User1" FromRole="User" ToRole="Zapisi" />
+    <NavigationProperty Name="Zapisi1" Relationship="kursovayaModel1.FK_Zapisi_User2" FromRole="User" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Uslugi">
+    <Key>
+      <PropertyRef Name="ID_Uslugi" />
+    </Key>
+    <Property Name="ID_Uslugi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazvanie_Uslugi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stoimost_Uslugi" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ID_Tipa_Uslugi" Type="Int32" />
+    <Property Name="ImageUsl" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Opisanie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Specialnosti" Type="Int32" />
+    <NavigationProperty Name="Specialnosti" Relationship="kursovayaModel1.FK_Uslugi_Specialnosti" FromRole="Uslugi" ToRole="Specialnosti" />
+    <NavigationProperty Name="Tip_uslugi" Relationship="kursovayaModel1.FK_Uslugi_Tip_uslugi1" FromRole="Uslugi" ToRole="Tip_uslugi" />
+    <NavigationProperty Name="Zapisi" Relationship="kursovayaModel1.FK_Zapisi_Uslugi" FromRole="Uslugi" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Zapisi">
+    <Key>
+      <PropertyRef Name="ID_Zapisi" />
+    </Key>
+    <Property Name="ID_Zapisi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pacient" Type="Int32" />
+    <Property Name="Vrach" Type="Int32" />
+    <Property Name="Date_priema" Type="DateTime" Precision="0" />
+    <Property Name="ID_Uslugi" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="kursovayaModel1.FK_Zapisi_User1" FromRole="Zapisi" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="kursovayaModel1.FK_Zapisi_User2" FromRole="Zapisi" ToRole="User" />
+    <NavigationProperty Name="Uslugi" Relationship="kursovayaModel1.FK_Zapisi_Uslugi" FromRole="Zapisi" ToRole="Uslugi" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Type="kursovayaModel1.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Specialnosti1">
+    <End Type="kursovayaModel1.Specialnosti" Role="Specialnosti" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialnosti">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="id_specialnosti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugi_Specialnosti">
+    <End Type="kursovayaModel1.Specialnosti" Role="Specialnosti" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.Uslugi" Role="Uslugi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialnosti">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Principal>
+      <Dependent Role="Uslugi">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugi_Tip_uslugi1">
+    <End Type="kursovayaModel1.Tip_uslugi" Role="Tip_uslugi" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.Uslugi" Role="Uslugi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tip_uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Principal>
+      <Dependent Role="Uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_User1">
+    <End Type="kursovayaModel1.User" Role="User" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.Zapisi" Role="Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="Pacient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_User2">
+    <End Type="kursovayaModel1.User" Role="User" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.Zapisi" Role="Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="Vrach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_Uslugi">
+    <End Type="kursovayaModel1.Uslugi" Role="Uslugi" Multiplicity="0..1" />
+    <End Type="kursovayaModel1.Zapisi" Role="Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uslugi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,44 @@
+﻿<Page x:Class="stomatology.Stranici.Registracia"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:stomatology.Stranici"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+          Title="РЕГИСТРАЦИЯ">
+
+    <Grid>
+        
+        <StackPanel  Width="280" Height="190" HorizontalAlignment="Center"  VerticalAlignment="Center" Orientation="Horizontal">
+            <StackPanel.Background >
+                <SolidColorBrush Opacity="0.2" Color="DarkBlue"></SolidColorBrush>
+            </StackPanel.Background>
+            <StackPanel Margin="20 0" Orientation="Vertical">
+
+                <TextBlock Style="{StaticResource Textblock}" Text="Введите логин:"></TextBlock>
+                <TextBox x:Name="PoleRegLogin" Width="110"></TextBox>
+                <TextBlock Style="{StaticResource Textblock}" Text="Введите пароль:"></TextBlock>
+                <PasswordBox x:Name="PoleRegParol"  Width="110" ></PasswordBox>
+                <TextBlock Style="{StaticResource Textblock}" Text="Повторите пароль:"></TextBlock>
+                <PasswordBox x:Name="PoleRegPovtParol"  Width="110" ></PasswordBox>
+              
+
+                <TextBlock Style="{StaticResource Textblock}" Text="Выберите роль:"></TextBlock>
+                    <ComboBox x:Name="Role"  Width="110" Height="17" ></ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Style="{StaticResource Textblock}" Text="Введите имя:"></TextBlock>
+            <TextBox x:Name="PoleRegName" Width="110"></TextBox>
+            <TextBlock Style="{StaticResource Textblock}" Text="Введите фамилию:"></TextBlock>
+            <TextBox x:Name="PoleRegSurname" Width="110"></TextBox>
+            <TextBlock Style="{StaticResource Textblock}" Text="Введите отчество:"></TextBlock>
+            <TextBox x:Name="PoleRegOtchestvo" Width="110"></TextBox>
+                <Button Margin="0 25" x:Name="Zareg" Click="Zareg_Click" Content="Зарегистрироваться"
+                    HorizontalAlignment="Center" Style="{StaticResource Button}" Width="100" Height="20"></Button>
+            </StackPanel>
+            
+        
+        </StackPanel>
+    </Grid>
+</Page>

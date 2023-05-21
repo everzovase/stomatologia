@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище kursovayaModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Specialnosti">
+    <Key>
+      <PropertyRef Name="ID_Specialnosti" />
+    </Key>
+    <Property Name="ID_Specialnosti" Type="int" Nullable="false" />
+    <Property Name="Specialnost" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tip_uslugi">
+    <Key>
+      <PropertyRef Name="ID_Tipa_Uslugi" />
+    </Key>
+    <Property Name="ID_Tipa_Uslugi" Type="int" Nullable="false" />
+    <Property Name="Nazvanie_Tipa_Uslugi" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID_User" />
+    </Key>
+    <Property Name="ID_User" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="Familia" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" />
+    <Property Name="id_specialnosti" Type="int" />
+    <Property Name="image" Type="varbinary(max)" />
+    <Property Name="Kabinet" Type="int" />
+  </EntityType>
+  <EntityType Name="Uslugi">
+    <Key>
+      <PropertyRef Name="ID_Uslugi" />
+    </Key>
+    <Property Name="ID_Uslugi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazvanie_Uslugi" Type="nvarchar(max)" />
+    <Property Name="Stoimost_Uslugi" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="ID_Tipa_Uslugi" Type="int" />
+    <Property Name="ImageUsl" Type="varbinary(max)" />
+    <Property Name="Opisanie" Type="nvarchar(max)" />
+    <Property Name="ID_Specialnosti" Type="int" />
+  </EntityType>
+  <EntityType Name="Zapisi">
+    <Key>
+      <PropertyRef Name="ID_Zapisi" />
+    </Key>
+    <Property Name="ID_Zapisi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Pacient" Type="int" />
+    <Property Name="Vrach" Type="int" />
+    <Property Name="Date_priema" Type="date" />
+    <Property Name="ID_Uslugi" Type="int" />
+  </EntityType>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Specialnosti1">
+    <End Role="Specialnosti" Type="Self.Specialnosti" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialnosti">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="id_specialnosti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugi_Specialnosti">
+    <End Role="Specialnosti" Type="Self.Specialnosti" Multiplicity="0..1" />
+    <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialnosti">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Principal>
+      <Dependent Role="Uslugi">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugi_Tip_uslugi1">
+    <End Role="Tip_uslugi" Type="Self.Tip_uslugi" Multiplicity="0..1" />
+    <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tip_uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Principal>
+      <Dependent Role="Uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="Pacient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_User2">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID_User" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="Vrach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_Uslugi">
+    <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uslugi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище kursovayaModel1Container">
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Specialnosti" EntityType="Self.Specialnosti" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tip_uslugi" EntityType="Self.Tip_uslugi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uslugi" EntityType="Self.Uslugi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zapisi" EntityType="Self.Zapisi" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Specialnosti1" Association="Self.FK_User_Specialnosti1">
+      <End Role="Specialnosti" EntitySet="Specialnosti" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugi_Specialnosti" Association="Self.FK_Uslugi_Specialnosti">
+      <End Role="Specialnosti" EntitySet="Specialnosti" />
+      <End Role="Uslugi" EntitySet="Uslugi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugi_Tip_uslugi1" Association="Self.FK_Uslugi_Tip_uslugi1">
+      <End Role="Tip_uslugi" EntitySet="Tip_uslugi" />
+      <End Role="Uslugi" EntitySet="Uslugi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_User1" Association="Self.FK_Zapisi_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_User2" Association="Self.FK_Zapisi_User2">
+      <End Role="User" EntitySet="User" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_Uslugi" Association="Self.FK_Zapisi_Uslugi">
+      <End Role="Uslugi" EntitySet="Uslugi" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

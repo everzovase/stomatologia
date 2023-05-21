@@ -1,0 +1,36 @@
+﻿<Page x:Class="stomatology.Stranici.RegistraciaAdministratora"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:stomatology.Stranici"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Регистрация администратора">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            <StackPanel   Height="160" Width="200">
+                <StackPanel.Background >
+                    <SolidColorBrush Opacity="0.2" Color="DarkBlue"></SolidColorBrush>
+                </StackPanel.Background>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" >
+                    <TextBlock  Style="{StaticResource Textblock}" Text="Введите логин:"></TextBlock>
+                    <TextBox x:Name="LoginAdmin" Style="{StaticResource TBLogin}" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Введите пароль:"  Style="{StaticResource Textblock}"></TextBlock>
+                    <PasswordBox x:Name="ParolAdmin" HorizontalAlignment="Right" Style="{StaticResource Passwordbox}"></PasswordBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                    <TextBlock Text="Повторите пароль:"  Style="{StaticResource Textblock}"></TextBlock>
+                    <PasswordBox x:Name="PovtorParolAdmin" HorizontalAlignment="Right" Style="{StaticResource Passwordbox}"></PasswordBox>
+                </StackPanel>
+
+                <Button x:Name="KnopkaRegAdmin" Click="KnopkaRegAdmin_Click"  Content="Регистрация"
+                    HorizontalAlignment="Center" Style="{StaticResource Button}" Width="100" Height="20"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

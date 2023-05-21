@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d85e593c074e495194a1aad6d5f35b3b" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="kursovayaModel1.Role" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="kursovayaModel1.Specialnosti" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="kursovayaModel1.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="kursovayaModel1.Tip_uslugi" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="kursovayaModel1.User" Width="1.5" PointX="6" PointY="3.75" />
+        <EntityTypeShape EntityType="kursovayaModel1.Uslugi" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="kursovayaModel1.Zapisi" Width="1.5" PointX="8.25" PointY="4.25" />
+        <AssociationConnector Association="kursovayaModel1.FK_User_Role" />
+        <AssociationConnector Association="kursovayaModel1.FK_User_Specialnosti1" />
+        <AssociationConnector Association="kursovayaModel1.FK_Uslugi_Specialnosti" />
+        <AssociationConnector Association="kursovayaModel1.FK_Uslugi_Tip_uslugi1" />
+        <AssociationConnector Association="kursovayaModel1.FK_Zapisi_User1" />
+        <AssociationConnector Association="kursovayaModel1.FK_Zapisi_User2" />
+        <AssociationConnector Association="kursovayaModel1.FK_Zapisi_Uslugi" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

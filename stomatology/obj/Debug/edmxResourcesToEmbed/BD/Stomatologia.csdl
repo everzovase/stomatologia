@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="kursovayaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Antibiotiki">
+    <Key>
+      <PropertyRef Name="ID_Antibiotika" />
+    </Key>
+    <Property Name="ID_Antibiotika" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_Antibiotika" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Zapisi" Relationship="Self.FK_Zapisi_Antibiotiki" FromRole="Antibiotiki" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Diagnozi">
+    <Key>
+      <PropertyRef Name="ID_Diagnoza" />
+    </Key>
+    <Property Name="ID_Diagnoza" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_Diagnoza" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Zapisi" Relationship="Self.id_Diag" FromRole="Diagnozi" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Kabineti">
+    <Key>
+      <PropertyRef Name="C__kabineta" />
+    </Key>
+    <Property Name="C__kabineta" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Vrachi" Relationship="Self.id_Kab" FromRole="Kabineti" ToRole="Vrachi" />
+  </EntityType>
+  <EntityType Name="Lechenie">
+    <Key>
+      <PropertyRef Name="ID_Lecheniya" />
+    </Key>
+    <Property Name="ID_Lecheniya" Type="Int32" Nullable="false" />
+    <Property Name="Antibiotiki" Type="Int32" />
+    <NavigationProperty Name="Zapisi" Relationship="Self.FK_Zapisi_Lechenie" FromRole="Lechenie" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Pacienti">
+    <Key>
+      <PropertyRef Name="ID_Pacienta" />
+    </Key>
+    <Property Name="ID_Pacienta" Type="Int32" Nullable="false" />
+    <Property Name="Familia_Pacienta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Name_pacienta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Otchestvo_Pacienta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Date_rozhdeniya" Type="DateTime" Precision="0" />
+    <Property Name="Nomer_telefona" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Zapisi" Relationship="Self.id_Pac" FromRole="Pacienti" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Specialnosti">
+    <Key>
+      <PropertyRef Name="ID_Specialnosti" />
+    </Key>
+    <Property Name="ID_Specialnosti" Type="Int32" Nullable="false" />
+    <Property Name="Specialnost" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Vrachi" Relationship="Self.FK_Vrachi_Specialnosti" FromRole="Specialnosti" ToRole="Vrachi" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tip_uslugi">
+    <Key>
+      <PropertyRef Name="ID_Tipa_Uslugi" />
+    </Key>
+    <Property Name="ID_Tipa_Uslugi" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_Tipa_Uslugi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Uslugi" Relationship="Self.FK_Uslugi_Tip_uslugi" FromRole="Tip_uslugi" ToRole="Uslugi" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Uslugi">
+    <Key>
+      <PropertyRef Name="ID_Uslugi" />
+    </Key>
+    <Property Name="ID_Uslugi" Type="Int32" Nullable="false" />
+    <Property Name="Nazvanie_Uslugi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Stoimost_Uslugi" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ID_Tipa_Uslugi" Type="Int32" />
+    <Property Name="ImageUsl" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Tip_uslugi" Relationship="Self.FK_Uslugi_Tip_uslugi" FromRole="Uslugi" ToRole="Tip_uslugi" />
+    <NavigationProperty Name="Zapisi" Relationship="Self.FK_Zapisi_Uslugi" FromRole="Uslugi" ToRole="Zapisi" />
+  </EntityType>
+  <EntityType Name="Vrachi">
+    <Key>
+      <PropertyRef Name="ID_Vracha" />
+    </Key>
+    <Property Name="ID_Vracha" Type="Int32" Nullable="false" />
+    <Property Name="Familia_Vracha" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Name_Vracha" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Otchestvo_Vracha" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Specialnost" Type="Int32" />
+    <Property Name="Kabinet" Type="Int32" />
+    <NavigationProperty Name="Kabineti" Relationship="Self.id_Kab" FromRole="Vrachi" ToRole="Kabineti" />
+    <NavigationProperty Name="Specialnosti" Relationship="Self.FK_Vrachi_Specialnosti" FromRole="Vrachi" ToRole="Specialnosti" />
+  </EntityType>
+  <EntityType Name="Zapisi">
+    <Key>
+      <PropertyRef Name="ID_Zapisi" />
+    </Key>
+    <Property Name="ID_Zapisi" Type="Int32" Nullable="false" />
+    <Property Name="Pacient" Type="Int32" />
+    <Property Name="Vrach" Type="Int32" />
+    <Property Name="Date_priema" Type="DateTime" Precision="0" />
+    <Property Name="ID_Uslugi" Type="Int32" />
+    <Property Name="ID_Lecheniya" Type="Int32" />
+    <Property Name="ID_Antibiotika" Type="Int32" />
+    <Property Name="ID_Diagnoza" Type="Int32" />
+    <NavigationProperty Name="Antibiotiki" Relationship="Self.FK_Zapisi_Antibiotiki" FromRole="Zapisi" ToRole="Antibiotiki" />
+    <NavigationProperty Name="Diagnozi" Relationship="Self.id_Diag" FromRole="Zapisi" ToRole="Diagnozi" />
+    <NavigationProperty Name="Lechenie" Relationship="Self.FK_Zapisi_Lechenie" FromRole="Zapisi" ToRole="Lechenie" />
+    <NavigationProperty Name="Pacienti" Relationship="Self.id_Pac" FromRole="Zapisi" ToRole="Pacienti" />
+    <NavigationProperty Name="Uslugi" Relationship="Self.FK_Zapisi_Uslugi" FromRole="Zapisi" ToRole="Uslugi" />
+  </EntityType>
+  <Association Name="FK_Zapisi_Antibiotiki">
+    <End Role="Antibiotiki" Type="Self.Antibiotiki" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Antibiotiki">
+        <PropertyRef Name="ID_Antibiotika" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Antibiotika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_Diag">
+    <End Role="Diagnozi" Type="Self.Diagnozi" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnozi">
+        <PropertyRef Name="ID_Diagnoza" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Diagnoza" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_Kab">
+    <End Role="Kabineti" Type="Self.Kabineti" Multiplicity="0..1" />
+    <End Role="Vrachi" Type="Self.Vrachi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kabineti">
+        <PropertyRef Name="C__kabineta" />
+      </Principal>
+      <Dependent Role="Vrachi">
+        <PropertyRef Name="Kabinet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_Lechenie">
+    <End Role="Lechenie" Type="Self.Lechenie" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lechenie">
+        <PropertyRef Name="ID_Lecheniya" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Lecheniya" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="id_Pac">
+    <End Role="Pacienti" Type="Self.Pacienti" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pacienti">
+        <PropertyRef Name="ID_Pacienta" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="Pacient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vrachi_Specialnosti">
+    <End Role="Specialnosti" Type="Self.Specialnosti" Multiplicity="0..1" />
+    <End Role="Vrachi" Type="Self.Vrachi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialnosti">
+        <PropertyRef Name="ID_Specialnosti" />
+      </Principal>
+      <Dependent Role="Vrachi">
+        <PropertyRef Name="Specialnost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Uslugi_Tip_uslugi">
+    <End Role="Tip_uslugi" Type="Self.Tip_uslugi" Multiplicity="0..1" />
+    <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tip_uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Principal>
+      <Dependent Role="Uslugi">
+        <PropertyRef Name="ID_Tipa_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Zapisi_Uslugi">
+    <End Role="Uslugi" Type="Self.Uslugi" Multiplicity="0..1" />
+    <End Role="Zapisi" Type="Self.Zapisi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uslugi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Principal>
+      <Dependent Role="Zapisi">
+        <PropertyRef Name="ID_Uslugi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="kursovayaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Antibiotiki" EntityType="Self.Antibiotiki" />
+    <EntitySet Name="Diagnozi" EntityType="Self.Diagnozi" />
+    <EntitySet Name="Kabineti" EntityType="Self.Kabineti" />
+    <EntitySet Name="Lechenie" EntityType="Self.Lechenie" />
+    <EntitySet Name="Pacienti" EntityType="Self.Pacienti" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="Specialnosti" EntityType="Self.Specialnosti" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tip_uslugi" EntityType="Self.Tip_uslugi" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="Uslugi" EntityType="Self.Uslugi" />
+    <EntitySet Name="Vrachi" EntityType="Self.Vrachi" />
+    <EntitySet Name="Zapisi" EntityType="Self.Zapisi" />
+    <AssociationSet Name="FK_Zapisi_Antibiotiki" Association="Self.FK_Zapisi_Antibiotiki">
+      <End Role="Antibiotiki" EntitySet="Antibiotiki" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="id_Diag" Association="Self.id_Diag">
+      <End Role="Diagnozi" EntitySet="Diagnozi" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="id_Kab" Association="Self.id_Kab">
+      <End Role="Kabineti" EntitySet="Kabineti" />
+      <End Role="Vrachi" EntitySet="Vrachi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_Lechenie" Association="Self.FK_Zapisi_Lechenie">
+      <End Role="Lechenie" EntitySet="Lechenie" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="id_Pac" Association="Self.id_Pac">
+      <End Role="Pacienti" EntitySet="Pacienti" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vrachi_Specialnosti" Association="Self.FK_Vrachi_Specialnosti">
+      <End Role="Specialnosti" EntitySet="Specialnosti" />
+      <End Role="Vrachi" EntitySet="Vrachi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Uslugi_Tip_uslugi" Association="Self.FK_Uslugi_Tip_uslugi">
+      <End Role="Tip_uslugi" EntitySet="Tip_uslugi" />
+      <End Role="Uslugi" EntitySet="Uslugi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Zapisi_Uslugi" Association="Self.FK_Zapisi_Uslugi">
+      <End Role="Uslugi" EntitySet="Uslugi" />
+      <End Role="Zapisi" EntitySet="Zapisi" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

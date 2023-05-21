@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище kursovayaModelContainer" CdmEntityContainer="kursovayaEntities">
+    <EntitySetMapping Name="Antibiotiki">
+      <EntityTypeMapping TypeName="kursovayaModel.Antibiotiki">
+        <MappingFragment StoreEntitySet="Antibiotiki">
+          <ScalarProperty Name="ID_Antibiotika" ColumnName="ID_Antibiotika" />
+          <ScalarProperty Name="Nazvanie_Antibiotika" ColumnName="Nazvanie_Antibiotika" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Diagnozi">
+      <EntityTypeMapping TypeName="kursovayaModel.Diagnozi">
+        <MappingFragment StoreEntitySet="Diagnozi">
+          <ScalarProperty Name="ID_Diagnoza" ColumnName="ID_Diagnoza" />
+          <ScalarProperty Name="Nazvanie_Diagnoza" ColumnName="Nazvanie_Diagnoza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kabineti">
+      <EntityTypeMapping TypeName="kursovayaModel.Kabineti">
+        <MappingFragment StoreEntitySet="Kabineti">
+          <ScalarProperty Name="C__kabineta" ColumnName="№_kabineta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lechenie">
+      <EntityTypeMapping TypeName="kursovayaModel.Lechenie">
+        <MappingFragment StoreEntitySet="Lechenie">
+          <ScalarProperty Name="ID_Lecheniya" ColumnName="ID_Lecheniya" />
+          <ScalarProperty Name="Antibiotiki" ColumnName="Antibiotiki" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pacienti">
+      <EntityTypeMapping TypeName="kursovayaModel.Pacienti">
+        <MappingFragment StoreEntitySet="Pacienti">
+          <ScalarProperty Name="ID_Pacienta" ColumnName="ID_Pacienta" />
+          <ScalarProperty Name="Familia_Pacienta" ColumnName="Familia_Pacienta" />
+          <ScalarProperty Name="Name_pacienta" ColumnName="Name_pacienta" />
+          <ScalarProperty Name="Otchestvo_Pacienta" ColumnName="Otchestvo_Pacienta" />
+          <ScalarProperty Name="Date_rozhdeniya" ColumnName="Date_rozhdeniya" />
+          <ScalarProperty Name="Nomer_telefona" ColumnName="Nomer_telefona" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="kursovayaModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialnosti">
+      <EntityTypeMapping TypeName="kursovayaModel.Specialnosti">
+        <MappingFragment StoreEntitySet="Specialnosti">
+          <ScalarProperty Name="ID_Specialnosti" ColumnName="ID_Specialnosti" />
+          <ScalarProperty Name="Specialnost" ColumnName="Specialnost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="kursovayaModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tip_uslugi">
+      <EntityTypeMapping TypeName="kursovayaModel.Tip_uslugi">
+        <MappingFragment StoreEntitySet="Tip_uslugi">
+          <ScalarProperty Name="ID_Tipa_Uslugi" ColumnName="ID_Tipa_Uslugi" />
+          <ScalarProperty Name="Nazvanie_Tipa_Uslugi" ColumnName="Nazvanie_Tipa_Uslugi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="kursovayaModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uslugi">
+      <EntityTypeMapping TypeName="kursovayaModel.Uslugi">
+        <MappingFragment StoreEntitySet="Uslugi">
+          <ScalarProperty Name="ID_Uslugi" ColumnName="ID_Uslugi" />
+          <ScalarProperty Name="Nazvanie_Uslugi" ColumnName="Nazvanie_Uslugi" />
+          <ScalarProperty Name="Stoimost_Uslugi" ColumnName="Stoimost_Uslugi" />
+          <ScalarProperty Name="ID_Tipa_Uslugi" ColumnName="ID_Tipa_Uslugi" />
+          <ScalarProperty Name="ImageUsl" ColumnName="ImageUsl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vrachi">
+      <EntityTypeMapping TypeName="kursovayaModel.Vrachi">
+        <MappingFragment StoreEntitySet="Vrachi">
+          <ScalarProperty Name="ID_Vracha" ColumnName="ID_Vracha" />
+          <ScalarProperty Name="Familia_Vracha" ColumnName="Familia_Vracha" />
+          <ScalarProperty Name="Name_Vracha" ColumnName="Name_Vracha" />
+          <ScalarProperty Name="Otchestvo_Vracha" ColumnName="Otchestvo_Vracha" />
+          <ScalarProperty Name="Specialnost" ColumnName="Specialnost" />
+          <ScalarProperty Name="Kabinet" ColumnName="Kabinet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zapisi">
+      <EntityTypeMapping TypeName="kursovayaModel.Zapisi">
+        <MappingFragment StoreEntitySet="Zapisi">
+          <ScalarProperty Name="ID_Zapisi" ColumnName="ID_Zapisi" />
+          <ScalarProperty Name="Pacient" ColumnName="Pacient" />
+          <ScalarProperty Name="Vrach" ColumnName="Vrach" />
+          <ScalarProperty Name="Date_priema" ColumnName="Date_priema" />
+          <ScalarProperty Name="ID_Uslugi" ColumnName="ID_Uslugi" />
+          <ScalarProperty Name="ID_Lecheniya" ColumnName="ID_Lecheniya" />
+          <ScalarProperty Name="ID_Antibiotika" ColumnName="ID_Antibiotika" />
+          <ScalarProperty Name="ID_Diagnoza" ColumnName="ID_Diagnoza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

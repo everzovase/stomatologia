@@ -1,0 +1,59 @@
+﻿<Page x:Class="stomatology.Stranici.AddSpecialista"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:stomatology.Stranici"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Редактирование специалиста">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  Text="Имя"/>
+                    <TextBox x:Name="TBoxName" Width="150" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  Text="Фамилия"/>
+                    <TextBox x:Name="TBoxFamilia"  Width="150" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  Text="Отчество"/>
+                    <TextBox x:Name="TBoxOtchestvo"  Width="150" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  Text="Специальность"/>
+                    <ComboBox Name="ComboSpecialnost" Width="150" Margin="5"></ComboBox>
+                </StackPanel>
+                
+
+            </StackPanel>
+            <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
+                    <Border Margin="5" Height="175" Width="200" BorderBrush="#f4f2ff" BorderThickness="1">
+                        <Image x:Name ="ImageVracha"/>
+                    </Border>
+                    <Button Height="30" Width="200" Margin="5" Click="BtnSelectImage_Click" x:Name="BtnSelectImage"
+                         Content="Выбрать фотографию" Style="{StaticResource Button}"/>
+                    <Button Height="30" Click="BtnSave_Click" Width="200" Margin="5" x:Name="BtnSave"
+                         Content="Сохранить" Style="{StaticResource Button}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+
+        <TextBlock  Style="{StaticResource BlockHeader}"
+                   Text="{Binding ElementName=FrameMain, Path=Content.Title}"></TextBlock>
+
+  
+        <Grid.Background>
+            <ImageBrush ImageSource="/Stranici/fonstoma.png"/>
+        </Grid.Background>
+    </Grid>
+</Page>

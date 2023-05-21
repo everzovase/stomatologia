@@ -1,0 +1,27 @@
+﻿<Page x:Class="stomatology.Stranici.Zapisi"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:stomatology.Stranici"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Записи" Loaded="Page_Loaded">
+
+    <Grid>
+
+        <DataGrid  MouseDoubleClick="ZapisiGrid_MouseDoubleClick" BorderThickness="1" x:Name="ZapisiGrid" AutoGenerateColumns="False" CanUserDeleteRows="True"  CanUserReorderColumns="False"  IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns  >
+                <DataGridTextColumn Width="70"  Header="Врач" Binding="{Binding Path=User1.Familia}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="70" Binding="{Binding Path=User1.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Width="70" Binding="{Binding Path=User1.Otchestvo}"></DataGridTextColumn>
+                <DataGridTextColumn  Header="Услуга" Binding="{Binding Path=Uslugi.Nazvanie_Uslugi}"></DataGridTextColumn>
+                <DataGridTextColumn  Header="Дата"  Binding="{Binding Date_priema, StringFormat='dd/MM/yyyy'}"></DataGridTextColumn>
+                <DataGridTextColumn  Header="Кабинет" Binding="{Binding Path=User1.Kabinet}"></DataGridTextColumn>
+            </DataGrid.Columns>
+                <DataGrid.Background>
+                <ImageBrush></ImageBrush>
+            </DataGrid.Background>
+        </DataGrid>
+    </Grid>
+</Page>

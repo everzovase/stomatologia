@@ -1,0 +1,28 @@
+﻿<Page x:Class="stomatology.Stranici.ZapisiVracha"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:stomatology.Stranici"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Записи на прием">
+
+    <Grid>
+        <Button Content="Печать" Name="Pechat" Click="Pechat_Click" Style="{StaticResource Button}" HorizontalAlignment="Right" VerticalAlignment="Bottom"></Button>
+
+        <DataGrid Margin="0 0 0 35" BorderThickness="0 1 0 0" x:Name="ZapisiGrid" AutoGenerateColumns="False"  CanUserReorderColumns="False" IsReadOnly="True" CanUserResizeColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="200"  Header="Услуга" Binding="{Binding Path=Uslugi.Nazvanie_Uslugi}" ></DataGridTextColumn>
+                <DataGridTextColumn Width="100" Header="Дата приема" Binding="{Binding Date_priema, StringFormat='dd/MM/yyyy'}"></DataGridTextColumn>
+                <DataGridTextColumn Width="70" Header="Пациент" Binding="{Binding User.Familia}"></DataGridTextColumn>
+                <DataGridTextColumn Width="70" Header="" Binding="{Binding User.Name}"></DataGridTextColumn>
+                <DataGridTextColumn Width="70" Header="" Binding="{Binding User.Otchestvo}"></DataGridTextColumn>
+            </DataGrid.Columns>
+
+            <DataGrid.Background>
+                <ImageBrush></ImageBrush>
+            </DataGrid.Background>
+        </DataGrid>
+    </Grid>
+</Page>
